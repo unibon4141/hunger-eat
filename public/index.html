@@ -27,8 +27,32 @@
       padding-left: 100px;
     }
 
+    nav {
+      width: 960px;
+      overflow: hidden;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    nav a {
+      text-align: center;
+      width: 300px;
+      display: block;
+      color: white;
+      background: black;
+      padding: 10px;
+      float: left;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      opacity: 0.8;
+    }
+
     #main {
-      min-height: 600px;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      min-height: 800px;
       background-color: #f4f4f4;
     }
 
@@ -52,7 +76,11 @@
       padding: 10px;
     }
 
-    .pizza {
+    .card .ramen {
+      padding: 0;
+    }
+
+    .food-item {
       width: 300px;
       height: 250px;
       object-fit: contain;
