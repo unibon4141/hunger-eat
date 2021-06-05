@@ -2,9 +2,7 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Link } from "react-router-dom";
-const api_id = process.env.FOOD_API_KEY;
-console.log("api:" + api_id);
-// import { fetchImages } from "./api";
+const api_id = process.env.API.KEY;
 async function fetchPizzaImages() {
   const urls = [];
   let cnt = 0;
@@ -14,7 +12,7 @@ async function fetchPizzaImages() {
     const response = await fetch(
       `https://foodish-api.herokuapp.com/api/images/pizza`
     )
-    // console.log(response);
+
     // jsonとして読み込む
     const data = await response.json();
     for (let i = 0; i < urls.length; i++) {
@@ -123,14 +121,14 @@ async function fetchRamenImages() {
   const response = await fetch(
     `https://api.flickr.com/services/rest?api_key=${api_id}&method=flickr.photos.search&format=json&nojsoncallback=1&extras=url_c,date_taken.original_format&tags=ramen&user_id=41665184%40N08`
   );
-  console.log("response is " + response);
+
   // jsonとして読み込む
   const data = await response.json();
-  console.log("data is " + data)
+
   data.photos.photo.map((d) => {
     urls.push(d.url_c);
   });
-  console.log("urls is " + urls);
+
   return urls.slice(0, 9);
 }
 async function fetchSteakImages() {
@@ -140,25 +138,20 @@ async function fetchSteakImages() {
   const response = await fetch(
     `https://api.flickr.com/services/rest?api_key=${api_id}&method=flickr.photos.search&format=json&nojsoncallback=1&extras=url_c,date_taken&tags=wagyu&user_id=78797573%40N00`
   );
-  console.log("response is " + response);
   // jsonとして読み込む
   const data = await response.json();
-  console.log("data is " + data)
   data.photos.photo.map((d) => {
     urls.push(d.url_c);
   });
-  console.log("urls is " + urls);
   return urls.slice(0, 9);
 }
 
 function RamenPage() {
-  console.log("RAmen");
   let [urls, setUrls] = useState(null);
   useEffect(() => {
 
     fetchRamenImages().then((url) => {
       urls = url;
-      // console.log(url);
       setUrls(urls);
     })
   }, [])
@@ -166,14 +159,14 @@ function RamenPage() {
 }
 
 function PizzaPage() {
-  console.log("pizza");
+
 
   let [urls, setUrls] = useState(null);
   useEffect(() => {
 
     fetchPizzaImages().then((url) => {
       urls = url;
-      // console.log(url);
+
       setUrls(urls);
     })
   }, [])
@@ -181,7 +174,7 @@ function PizzaPage() {
 }
 
 function SteakPage() {
-  console.log("staak");
+
 
   let [urls, setUrls] = useState(null);
   useEffect(() => {
